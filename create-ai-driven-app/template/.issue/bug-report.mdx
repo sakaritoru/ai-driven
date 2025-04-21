@@ -1,0 +1,31 @@
+---
+title: バグレポート
+nav_title: issueテンプレート
+description: バグが起きた場合の報告用テンプレート
+---
+
+# タイトル
+[バグ名]: [簡単な説明]
+
+# ボディー
+```
+# バグ報告: データ同期処理中のNullPointerException
+
+## 発生状況
+アプリケーションのデータ同期処理中、特定条件下で以下のエラーが発生します。発生頻度は約20%で、ほとんどの場合大量のデータを同期する際に発生します。
+
+## 再現手順
+1. アプリケーションのバージョン 2.3.5 で実行
+2. 設定画面から「一括同期」オプションを選択
+3. データサイズが10MB以上の場合に選択
+4. 「同期開始」ボタンをクリック
+5. 約30秒待機
+
+## エラーログ
+```java
+java.lang.NullPointerException
+    at com.example.app.sync.DataSyncManager.processItems(DataSyncManager.java:237)
+    at com.example.app.sync.DataSyncManager.startSync(DataSyncManager.java:142)
+    at com.example.app.ui.SyncActivity$2.onClick(SyncActivity.java:89)
+    at android.view.View.performClick(View.java:6597)
+```
